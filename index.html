@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gedanke des Tages</title>
 
-<!-- Moderne ruhige Schrift -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -15,50 +14,45 @@ body {
   display:flex;
   align-items:center;
   justify-content:center;
-  font-family:'DM Sans', sans-serif;
+  text-align:center;
+  font-family:'Inter', sans-serif;
+  color:#2e2e2e;
 
-  /* Warmer Natur-Gradient */
-  background: linear-gradient(135deg, #e6d5c3, #d6c1a3, #b7b09c);
-  background-attachment: fixed;
+  /* Aesthetic Plant Wallpaper */
+  background-image: url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200");
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
-.popup {
-  max-width: 90%;
-  padding: 40px 32px;
+/* sanfte Abdunklung für bessere Lesbarkeit */
+body::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(2px);
+}
 
-  /* Glas Effekt */
-  background: rgba(255,255,255,0.65);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  border-radius: 24px;
-
-  /* Leichter natürlicher Schatten */
-  box-shadow: 
-    0 10px 40px rgba(0,0,0,0.08),
-    0 2px 8px rgba(0,0,0,0.05);
-
-  text-align: center;
-  animation: fadeIn .6s ease;
+.quote-container {
+  position:relative;
+  max-width: 85%;
+  padding: 40px 30px;
 }
 
 p {
-  font-size: 1.5rem;
+  font-family:'Playfair Display', serif;
+  font-size: 1.6rem;
   line-height: 1.6;
   font-weight: 500;
-  color: #3e3e3e;
 }
 
-@keyframes fadeIn {
-  from {opacity:0; transform:translateY(15px);}
-  to {opacity:1; transform:translateY(0);}
-}
 </style>
 </head>
 
 <body>
 
-<div class="popup">
+<div class="quote-container">
   <p id="spruch"></p>
 </div>
 
@@ -70,7 +64,6 @@ const SPRUECHE = [
 
 const GEBURTSTAG_TEXT = "🎉 Heute ist ein ganz besonderer Tag. Vergiss nie, wie wertvoll du bist. Happy Birthday du wundervoller Mensch.♥️💐";
 
-/* Berliner Datum */
 function getBerlinDate() {
   const parts = new Intl.DateTimeFormat("de-DE", {
     timeZone: "Europe/Berlin",
@@ -82,11 +75,7 @@ function getBerlinDate() {
   const map = {};
   parts.forEach(p => map[p.type] = p.value);
 
-  return {
-    year: map.year,
-    month: map.month,
-    day: map.day
-  };
+  return { year: map.year, month: map.month, day: map.day };
 }
 
 function getDayOfYear(year, month, day) {
@@ -95,7 +84,6 @@ function getDayOfYear(year, month, day) {
   return Math.floor((current - start) / 86400000) + 1;
 }
 
-/* Fisher-Yates Shuffle */
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -107,7 +95,6 @@ function shuffle(array) {
 function getTodayMessage() {
   const {year, month, day} = getBerlinDate();
 
-  /* 🎂 06.03 Sonderregel */
   if (day === "06" && month === "03") {
     return GEBURTSTAG_TEXT;
   }
@@ -127,12 +114,10 @@ function getTodayMessage() {
 
   if (data.lastDay !== dayOfYear) {
     data.index++;
-
     if (data.index >= data.shuffled.length) {
       data.shuffled = shuffle([...SPRUECHE]);
       data.index = 0;
     }
-
     data.lastDay = dayOfYear;
   }
 
