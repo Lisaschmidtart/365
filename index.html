@@ -1,163 +1,147 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Dein Tagesgedanke</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gedanke des Tages</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: rgba(0,0,0,0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+<!-- Moderne ruhige Schrift -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-    .popup {
-      background: white;
-      border-radius: 16px;
-      padding: 28px;
-      max-width: 90%;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-      animation: fadeIn 0.4s ease;
-    }
+<style>
+body {
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'DM Sans', sans-serif;
 
-    h1 {
-      font-size: 1.2rem;
-      margin-bottom: 16px;
-      opacity: 0.6;
-    }
+  /* Warmer Natur-Gradient */
+  background: linear-gradient(135deg, #e6d5c3, #d6c1a3, #b7b09c);
+  background-attachment: fixed;
+}
 
-    p {
-      font-size: 1.3rem;
-      line-height: 1.4;
-    }
+.popup {
+  max-width: 90%;
+  padding: 40px 32px;
 
-    button {
-      margin-top: 24px;
-      padding: 10px 18px;
-      border: none;
-      border-radius: 10px;
-      background: #000;
-      color: #fff;
-      font-size: 1rem;
-    }
+  /* Glas Effekt */
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-  </style>
+  border-radius: 24px;
+
+  /* Leichter natürlicher Schatten */
+  box-shadow: 
+    0 10px 40px rgba(0,0,0,0.08),
+    0 2px 8px rgba(0,0,0,0.05);
+
+  text-align: center;
+  animation: fadeIn .6s ease;
+}
+
+p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-weight: 500;
+  color: #3e3e3e;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(15px);}
+  to {opacity:1; transform:translateY(0);}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="popup">
-    <h1>Gedanke des Tages</h1>
-    <p id="spruch"></p>
-    <button onclick="window.close()">Schließen</button>
-  </div>
+<div class="popup">
+  <p id="spruch"></p>
+</div>
 
 <script>
-  const sprueche = [
-    "Jeder Tag ist eine neue Chance.",
-    "Du bist weiter, als du denkst.",
-    "Kleine Schritte sind auch Fortschritt.",
-    "Ich wünsch mir für dich: Dass dein Mut so viel größer ist als deine Angst.",
-    "Dein Lächeln steht dir so unfassbar gut.",
-    "Tage, an denen man plant, Bananen zu essen, nennt man auch Bananenplantage.",
-    "easy peasy lemon squeezy.",
-    "Sei lieb zu dir.",
-    "Wer schön sein will, muss lachen.",
-    "Du machst das schon richtig. Vertrau dir.",
-    "Wenn es dich glücklich macht, muss es keinen Sinn ergeben.",
-    "Mann muss die Dinge auch einfach mal so ignorieren, wie sie sind.",
-    "Voll schön dass wir gleichzeitig leben.",
-    "Mann muss mit allem rechnen, auch mit dem guten.",
-    "Es gibt kein Weg zum Glück. Glücklich sein, ist der Weg.",
-    "Jedes leben ist ein Experiment. Je mehr du experimentierst, desto mehr lebst du.",
-    "Treat yourself with kindness.",
-    "Nur weil du die Stimung im Raum lesen kannst, wird sie nicht zu deiner Verantwortung.",
-    "Das Auge sieht nur, was der Geist bereits ist zu verstehen.",
-    "Zu viel nachdenken verursacht Grübelkei.",
-    "Es ist wichtig, dass es deiner Seele gut tut.",
-    "Jeder Tag ist ein neuer Anfang.",
-    "Du brauchst immer nur genug Mut für den nächsten Schritt, noch nicht für die gaze Treppe.",
-    "Gedanken sind keine Fakten.",
-    "Gestern war schrottwichteln im Kindergarten, wir sind jetzt die Eltern vom kleinen Kevin.",
-    "Es ist wichtig, das es deiner Seele gut geht!",
-    "Und im Zweifelsfall; einfach mal die Zweifel anzweifeln.",
-    "Manchmal zweifelst du daran, ob du genug bist, weil du nur siehst, wo du stolperst.",
-    "Mut wird immer belohnt. Entweder mit Erfolg oder mit Erfahrung.",
-    "Bringst du bitte Salza mit? Du meinst Salsa? Ja. Stimmt. War ein Dip-Fehler. Deine Quarkamole.",
-    "Freundschaft ist das Herzstück unseres Lebens unnd ihre Bedeutung ist unbezahlbar.",
-    "Du darfst an dich glauben - IMMER!",
-    "Dein Lachen macht dich wunderschön.",
-    "Die einzige Möglichkeit, Zeit zu haben, ist: sich Zeit zu nehmen.",
-    "Ich hab dich Lieb!",
-    "Lebe den Moment. Liebe dich selbst. Lache jeden Tag.",
-    "Am Ende ist auch Regen ein Stück Himmel auf der Hand.",
-    "SMILE, it's free therapy.",
-    ":(: Du entscheidest!",
-    "Kurzer Reminder, falls du auf ein Wunder wartest: DU bist eins!",
-    "Streu Konfetti, sing ein Lied, bleib positiv und hab das Leben lieb.",
-    "Es hat keinerlei Nachteile, positiv in die Zukunf zu blicken.",
-    "Don't stress over things you can't control.",
-    "Schwarzer Humor ist wie Essen – Hat nicht jeder.",
-    "Denk bitte immer daran, auch an DICh zu denken.",
-    "Glaub an dich selbst. Du bist nämlich krass, bei allem, was du schon überwunden hast.",
-    "Mach mehr von den dingen, die dir das Gefühl geben, am leben zu sein.",
-    "Und manchmal musst du dir vor Augen halten, dass du jeden Tag gleich viel wert bist.",
-    "Ich wünsche mir für dich: dass die schönen Kleinigkeiten des Lebens überwiegen.",
-    "Gedanken sind keine geprüften Wahrheiten.",
-    "Was sucht ein Einarmiger in der Fußgängerzone? Einen Secondhand-Shop.",
-    "Frieda hat dich ganz doll lieb.💜",
-  ];
+const SPRUECHE = [
+  "Jeder Tag ist eine neue Chance.",
+  "Du bist weiter, als du denkst."
+];
 
-  const GEBURTSTAG = {
-    tag: 6,
-    monat: 3, // März
-    text: " 🎉 Heute ist ein ganz besonderer Tag. Vergiss nie, wie wertvoll du bist. 
-      Happy Birthday du wundervoller Mensch.♥️💐"
+const GEBURTSTAG_TEXT = "🎉 Heute ist ein ganz besonderer Tag. Vergiss nie, wie wertvoll du bist. Happy Birthday du wundervoller Mensch.♥️💐";
+
+/* Berliner Datum */
+function getBerlinDate() {
+  const parts = new Intl.DateTimeFormat("de-DE", {
+    timeZone: "Europe/Berlin",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(new Date());
+
+  const map = {};
+  parts.forEach(p => map[p.type] = p.value);
+
+  return {
+    year: map.year,
+    month: map.month,
+    day: map.day
   };
+}
 
-  // Aktuelles Datum in Berliner Zeit
-  const heuteBerlin = new Date(
-    new Intl.DateTimeFormat("de-DE", {
-      timeZone: "Europe/Berlin",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit"
-    }).format(new Date()).split(".").reverse().join("-")
-  );
+function getDayOfYear(year, month, day) {
+  const start = new Date(year, 0, 1);
+  const current = new Date(year, month - 1, day);
+  return Math.floor((current - start) / 86400000) + 1;
+}
 
-  const tag = heuteBerlin.getDate();
-  const monat = heuteBerlin.getMonth() + 1;
+/* Fisher-Yates Shuffle */
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
-  let anzeigeText;
+function getTodayMessage() {
+  const {year, month, day} = getBerlinDate();
 
-  // 🎂 Sonderdatum prüfen
-  if (tag === GEBURTSTAG.tag && monat === GEBURTSTAG.monat) {
-    anzeigeText = GEBURTSTAG.text;
-  } else {
-    // Jahresanfang (Berlin-Zeit)
-    const jahresStart = new Date(heuteBerlin.getFullYear(), 0, 1);
-
-    // Tagesnummer berechnen
-    const tagDesJahres = Math.floor(
-      (heuteBerlin - jahresStart) / (1000 * 60 * 60 * 24)
-    ) + 1;
-
-    const index = (tagDesJahres - 1) % sprueche.length;
-    anzeigeText = sprueche[index];
+  /* 🎂 06.03 Sonderregel */
+  if (day === "06" && month === "03") {
+    return GEBURTSTAG_TEXT;
   }
 
-  document.getElementById("spruch").innerText = anzeigeText;
+  const dayOfYear = getDayOfYear(Number(year), Number(month), Number(day));
+  const storageKey = "spruch_data_" + year;
+
+  let data = JSON.parse(localStorage.getItem(storageKey));
+
+  if (!data) {
+    data = {
+      shuffled: shuffle([...SPRUECHE]),
+      index: 0,
+      lastDay: dayOfYear
+    };
+  }
+
+  if (data.lastDay !== dayOfYear) {
+    data.index++;
+
+    if (data.index >= data.shuffled.length) {
+      data.shuffled = shuffle([...SPRUECHE]);
+      data.index = 0;
+    }
+
+    data.lastDay = dayOfYear;
+  }
+
+  localStorage.setItem(storageKey, JSON.stringify(data));
+  return data.shuffled[data.index];
+}
+
+document.getElementById("spruch").innerText = getTodayMessage();
 </script>
-  
+
 </body>
 </html>
