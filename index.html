@@ -14,52 +14,86 @@ body {
   display:flex;
   align-items:center;
   justify-content:center;
+  background:#f5f1ea;
   overflow:hidden;
-
-  /* Dein hochgeladenes Bild */
-  background: url("background.jpg") no-repeat center center;
-  background-size: cover;
+  position:relative;
 }
 
-/* Leichte Aufhellung für bessere Lesbarkeit */
-body::before {
-  content:"";
+/* Organische transparente Formen */
+.blob {
   position:absolute;
-  inset:0;
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(2px);
+  border-radius:50%;
+  filter:blur(40px);
+  opacity:0.6;
 }
 
-/* Glas Text Container */
+.blob1 {
+  width:500px;
+  height:500px;
+  background:#e8dfd2;
+  top:-150px;
+  left:-100px;
+}
+
+.blob2 {
+  width:420px;
+  height:420px;
+  background:#e3c7b3;
+  right:-120px;
+  top:120px;
+}
+
+.blob3 {
+  width:380px;
+  height:380px;
+  background:#c98f6a;
+  bottom:-140px;
+  right:80px;
+  opacity:0.5;
+}
+
+.blob4 {
+  width:450px;
+  height:450px;
+  background:#d9cfc2;
+  bottom:-150px;
+  left:-120px;
+}
+
+/* Glas-Text Container */
 .quote-box {
   position:relative;
-  padding:20px 34px;
-  border-radius:20px;
+  padding:22px 36px;
+  border-radius:22px;
 
   background: rgba(255,255,255,0.35);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
   box-shadow:
-    0 15px 40px rgba(0,0,0,0.08),
+    0 20px 45px rgba(0,0,0,0.08),
     0 4px 12px rgba(0,0,0,0.05);
 
   text-align:center;
   max-width:85%;
 }
 
-/* Glas-Schrift */
 .quote-box p {
   font-family:'Caveat', cursive;
   font-size:2rem;
   margin:0;
-  color: rgba(60,45,35,0.85);
+  color:#4a3a2f;
   letter-spacing:0.5px;
 }
 </style>
 </head>
 
 <body>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+<div class="blob blob4"></div>
 
 <div class="quote-box">
   <p id="spruch"></p>
