@@ -2,113 +2,85 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gedanke des Tages</title>
 
-<!-- Moderne ruhige Schrift -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter:wght@400&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin:0;
   height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  overflow:hidden;
-  font-family: 'Inter', sans-serif;
   background:#f3efe8;
+  font-family:'Inter', sans-serif;
   position:relative;
-}
-
-/* Organische Hintergrund-Formen */
-.background {
-  position:absolute;
-  width:100%;
-  height:100%;
   overflow:hidden;
-  z-index:0;
 }
 
-.shape {
+/* organische beige Flächen */
+.shape1, .shape2 {
   position:absolute;
+  width:300px;
+  height:300px;
+  background:#e6d8c7;
   border-radius:50%;
-  filter:blur(80px);
-  opacity:0.65;
+  filter:blur(40px);
+  opacity:0.6;
 }
 
-.shape1 {
-  width:80vw;
-  height:80vw;
-  background:rgba(217, 203, 185, 0.8);
-  top:-20vw;
-  left:-25vw;
+.shape1 { top:-80px; left:-80px; }
+.shape2 { bottom:-80px; right:-80px; }
+
+/* Line Art Pflanzen (SVG Stil) */
+.plant-top, .plant-bottom {
+  position:absolute;
+  width:180px;
+  opacity:0.6;
 }
 
-.shape2 {
-  width:70vw;
-  height:70vw;
-  background:rgba(230, 190, 160, 0.7);
-  top:10vh;
-  right:-25vw;
-}
+.plant-top { top:40px; left:20px; }
+.plant-bottom { bottom:40px; right:20px; transform: rotate(180deg); }
 
-.shape3 {
-  width:75vw;
-  height:75vw;
-  background:rgba(200, 140, 110, 0.55);
-  bottom:-25vw;
-  right:5vw;
-}
-
-.shape4 {
-  width:70vw;
-  height:70vw;
-  background:rgba(245, 230, 210, 0.9);
-  bottom:-30vw;
-  left:-20vw;
-}
-
-/* Glas Effekt Box */
+/* Glas-Text */
 .quote-box {
-  position:relative;
-  z-index:2;
-  padding:28px 30px;
-  max-width:85%;
-  border-radius:24px;
+  padding:18px 28px;
+  border-radius:16px;
 
   background: rgba(255,255,255,0.35);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-  box-shadow:
-    0 20px 40px rgba(0,0,0,0.08),
-    0 5px 15px rgba(0,0,0,0.05);
-
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   text-align:center;
 }
 
 .quote-box p {
-  font-size:1.4rem;
-  line-height:1.6;
-  color:#3f3329;
+  font-family:'Caveat', cursive;
+  font-size:1.9rem;
   margin:0;
+  color:#3d3d3d;
 }
 </style>
 </head>
 
 <body>
 
-<div class="background">
-  <div class="shape shape1"></div>
-  <div class="shape shape2"></div>
-  <div class="shape shape3"></div>
-  <div class="shape shape4"></div>
-</div>
+<div class="shape1"></div>
+<div class="shape2"></div>
+
+<!-- einfache SVG Line Plant -->
+<svg class="plant-top" viewBox="0 0 200 200">
+  <path d="M100 180 C120 150 120 100 100 60 C80 100 80 150 100 180" stroke="#444" stroke-width="2" fill="none"/>
+  <ellipse cx="100" cy="120" rx="20" ry="40" stroke="#444" fill="none"/>
+</svg>
+
+<svg class="plant-bottom" viewBox="0 0 200 200">
+  <path d="M100 180 C120 150 120 100 100 60 C80 100 80 150 100 180" stroke="#444" stroke-width="2" fill="none"/>
+  <ellipse cx="100" cy="120" rx="20" ry="40" stroke="#444" fill="none"/>
+</svg>
 
 <div class="quote-box">
   <p id="spruch"></p>
@@ -116,58 +88,58 @@ body {
 
 <script>
 const SPRUECHE = [
-"Jeder Tag ist eine neue Chance.",
-"Du bist weiter, als du denkst.",
-"Kleine Schritte sind auch Fortschritt.",
-"Ich wünsch mir für dich: Dass dein Mut so viel größer ist als deine Angst.",
-"Dein Lächeln steht dir so unfassbar gut.",
-"Tage, an denen man plant, Bananen zu essen, nennt man auch Bananenplantage.",
-"easy peasy lemon squeezy.",
-"Sei lieb zu dir.",
-"Wer schön sein will, muss lachen.",
-"Du machst das schon richtig. Vertrau dir.",
-"Wenn es dich glücklich macht, muss es keinen Sinn ergeben.",
-"Mann muss die Dinge auch einfach mal so ignorieren, wie sie sind.",
-"Voll schön dass wir gleichzeitig leben.",
-"Mann muss mit allem rechnen, auch mit dem guten.",
-"Es gibt kein Weg zum Glück. Glücklich sein, ist der Weg.",
-"Jedes leben ist ein Experiment. Je mehr du experimentierst, desto mehr lebst du.",
-"Treat yourself with kindness.",
-"Nur weil du die Stimung im Raum lesen kannst, wird sie nicht zu deiner Verantwortung.",
-"Das Auge sieht nur, was der Geist bereits ist zu verstehen.",
-"Zu viel nachdenken verursacht Grübelkei.",
-"Es ist wichtig, dass es deiner Seele gut tut.",
-"Jeder Tag ist ein neuer Anfang.",
-"Du brauchst immer nur genug Mut für den nächsten Schritt, noch nicht für die gaze Treppe.",
-"Gedanken sind keine Fakten.",
-"Gestern war schrottwichteln im Kindergarten, wir sind jetzt die Eltern vom kleinen Kevin.",
-"Es ist wichtig, das es deiner Seele gut geht!",
-"Und im Zweifelsfall; einfach mal die Zweifel anzweifeln.",
-"Manchmal zweifelst du daran, ob du genug bist, weil du nur siehst, wo du stolperst.",
-"Mut wird immer belohnt. Entweder mit Erfolg oder mit Erfahrung.",
-"Bringst du bitte Salza mit? Du meinst Salsa? Ja. Stimmt. War ein Dip-Fehler. Deine Quarkamole.",
-"Freundschaft ist das Herzstück unseres Lebens unnd ihre Bedeutung ist unbezahlbar.",
-"Du darfst an dich glauben - IMMER!",
-"Dein Lachen macht dich wunderschön.",
-"Die einzige Möglichkeit, Zeit zu haben, ist: sich Zeit zu nehmen.",
-"Ich hab dich Lieb!",
-"Lebe den Moment. Liebe dich selbst. Lache jeden Tag.",
-"Am Ende ist auch Regen ein Stück Himmel auf der Hand.",
-"SMILE, it's free therapy.",
-":(: Du entscheidest!",
-"Kurzer Reminder, falls du auf ein Wunder wartest: DU bist eins!",
-"Streu Konfetti, sing ein Lied, bleib positiv und hab das Leben lieb.",
-"Es hat keinerlei Nachteile, positiv in die Zukunf zu blicken.",
-"Don't stress over things you can't control.",
-"Schwarzer Humor ist wie Essen – Hat nicht jeder.",
-"Denk bitte immer daran, auch an DICh zu denken.",
-"Glaub an dich selbst. Du bist nämlich krass, bei allem, was du schon überwunden hast.",
-"Mach mehr von den dingen, die dir das Gefühl geben, am leben zu sein.",
-"Und manchmal musst du dir vor Augen halten, dass du jeden Tag gleich viel wert bist.",
-"Ich wünsche mir für dich: dass die schönen Kleinigkeiten des Lebens überwiegen.",
-"Gedanken sind keine geprüften Wahrheiten.",
-"Was sucht ein Einarmiger in der Fußgängerzone? Einen Secondhand-Shop.",
-"Frieda hat dich ganz doll lieb.💜"
+  "Jeder Tag ist eine neue Chance.",
+  "Du bist weiter, als du denkst.",
+  "Kleine Schritte sind auch Fortschritt.",
+  "Ich wünsch mir für dich: Dass dein Mut so viel größer ist als deine Angst.",
+  "Dein Lächeln steht dir so unfassbar gut.",
+  "Tage, an denen man plant, Bananen zu essen, nennt man auch Bananenplantage.",
+  "easy peasy lemon squeezy.",
+  "Sei lieb zu dir.",
+  "Wer schön sein will, muss lachen.",
+  "Du machst das schon richtig. Vertrau dir.",
+  "Wenn es dich glücklich macht, muss es keinen Sinn ergeben.",
+  "Mann muss die Dinge auch einfach mal so ignorieren, wie sie sind.",
+  "Voll schön dass wir gleichzeitig leben.",
+  "Mann muss mit allem rechnen, auch mit dem guten.",
+  "Es gibt kein Weg zum Glück. Glücklich sein, ist der Weg.",
+  "Jedes leben ist ein Experiment. Je mehr du experimentierst, desto mehr lebst du.",
+  "Treat yourself with kindness.",
+  "Nur weil du die Stimung im Raum lesen kannst, wird sie nicht zu deiner Verantwortung.",
+  "Das Auge sieht nur, was der Geist bereits ist zu verstehen.",
+  "Zu viel nachdenken verursacht Grübelkei.",
+  "Es ist wichtig, dass es deiner Seele gut tut.",
+  "Jeder Tag ist ein neuer Anfang.",
+  "Du brauchst immer nur genug Mut für den nächsten Schritt, noch nicht für die gaze Treppe.",
+  "Gedanken sind keine Fakten.",
+  "Gestern war schrottwichteln im Kindergarten, wir sind jetzt die Eltern vom kleinen Kevin.",
+  "Es ist wichtig, das es deiner Seele gut geht!",
+  "Und im Zweifelsfall; einfach mal die Zweifel anzweifeln.",
+  "Manchmal zweifelst du daran, ob du genug bist, weil du nur siehst, wo du stolperst.",
+  "Mut wird immer belohnt. Entweder mit Erfolg oder mit Erfahrung.",
+  "Bringst du bitte Salza mit? Du meinst Salsa? Ja. Stimmt. War ein Dip-Fehler. Deine Quarkamole.",
+  "Freundschaft ist das Herzstück unseres Lebens unnd ihre Bedeutung ist unbezahlbar.",
+  "Du darfst an dich glauben - IMMER!",
+  "Dein Lachen macht dich wunderschön.",
+  "Die einzige Möglichkeit, Zeit zu haben, ist: sich Zeit zu nehmen.",
+  "Ich hab dich Lieb!",
+  "Lebe den Moment. Liebe dich selbst. Lache jeden Tag.",
+  "Am Ende ist auch Regen ein Stück Himmel auf der Hand.",
+  "SMILE, it's free therapy.",
+  ":(: Du entscheidest!",
+  "Kurzer Reminder, falls du auf ein Wunder wartest: DU bist eins!",
+  "Streu Konfetti, sing ein Lied, bleib positiv und hab das Leben lieb.",
+  "Es hat keinerlei Nachteile, positiv in die Zukunf zu blicken.",
+  "Don't stress over things you can't control.",
+  "Schwarzer Humor ist wie Essen – Hat nicht jeder.",
+  "Denk bitte immer daran, auch an DICh zu denken.",
+  "Glaub an dich selbst. Du bist nämlich krass, bei allem, was du schon überwunden hast.",
+  "Mach mehr von den dingen, die dir das Gefühl geben, am leben zu sein.",
+  "Und manchmal musst du dir vor Augen halten, dass du jeden Tag gleich viel wert bist.",
+  "Ich wünsche mir für dich: dass die schönen Kleinigkeiten des Lebens überwiegen.",
+  "Gedanken sind keine geprüften Wahrheiten.",
+  "Was sucht ein Einarmiger in der Fußgängerzone? Einen Secondhand-Shop.",
+  "Frieda hat dich ganz doll lieb.💜",
 ];
 
 const GEBURTSTAG_TEXT = "🎉 Heute ist ein ganz besonderer Tag. Vergiss nie, wie wertvoll du bist. Happy Birthday du wundervoller Mensch.♥️💐";
